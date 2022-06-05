@@ -1,6 +1,17 @@
 # Book_Library_Task
-Django REST Framework Based Book Management Library System.
+# Django REST Framework Based Book Management Library System.
 
+
+## Technology Used:- 
+## Frontend :- HTML,CSS,JQuery
+## Backend :- Django REST API
+## Database :- MYSQL
+
+## Directory Strucure :- 
+
+Frontend :- This directory contain all the frontend files.
+LibraryProjectAPI :- This directory contain all backend files
+swagger.json :- Contain API documentation.
 
 ## Installation steps
 Ensure you have python3 installed
