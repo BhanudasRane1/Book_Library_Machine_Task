@@ -30,7 +30,7 @@ On Windows use source venv\Scripts\activate
 
 5) Run the django development server using python manage.py runserver
 
-### ****API Documentation:-
+## API Documentation:-
 
 ## Steps To Read API Documentation 
 1) Find above swagger.json file provided in repository.
