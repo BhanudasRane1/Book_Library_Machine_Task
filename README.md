@@ -3,9 +3,9 @@
 
 
 ## Technology Used:- 
-## Frontend :- HTML,CSS,JQuery
-## Backend :- Django REST API
-## Database :- MYSQL
+### Frontend :- HTML,CSS,JQuery
+### Backend :- Django REST API
+### Database :- MYSQL
 
 ## Directory Strucure :- 
 
