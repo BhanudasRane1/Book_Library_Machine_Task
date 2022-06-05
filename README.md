@@ -1,4 +1,4 @@
-# Book_Library_Task
+### Book_Library_Task
 Django REST Framework Based Book Management Library System.
 
 
@@ -21,7 +21,7 @@ On Windows use source venv\Scripts\activate
 
 ****API Documentation:-
 
-Steps To Read API Documentation 
+## Steps To Read API Documentation 
 1) Find above swagger.json file provided in repository.
 2) Open POSTMAN (API Testing and Documentation Tool) .
 3) Click on "File" tab and select import option.
@@ -30,7 +30,7 @@ Steps To Read API Documentation
 ![Screenshot (173)](https://user-images.githubusercontent.com/75332377/172048460-04f31998-7a9a-40a4-9bd4-f10cdbb83102.png)
 
 
-Backend REST API Screenshots:-
+### Backend REST API Screenshots:-
 
 ![Screenshot (188)](https://user-images.githubusercontent.com/75332377/172052008-a5148edd-ffd3-45a1-86e8-c91fe9e86729.png)
 
@@ -45,19 +45,19 @@ Backend REST API Screenshots:-
 
 
 
-Admin Registeration :- 
+### Admin Registeration :- 
 
 
 ![Screenshot (179)](https://user-images.githubusercontent.com/75332377/172052248-7b98e274-c487-47b0-b1e0-ba1333c6d138.png)
 
 
-Admin Login :- 
+### Admin Login :- 
 
 ![Screenshot (180)](https://user-images.githubusercontent.com/75332377/172052285-b1e79298-f700-44f6-b215-83c17969d9dc.png)
 
 
 
-CRUD Operations :- 
+### CRUD Operations :- 
 
 1) Add Book (CREATE) :- 
 
@@ -78,7 +78,7 @@ CRUD Operations :-
 
 
 
-Student View :- 
+### Student View :- 
 
 ![Screenshot (186)](https://user-images.githubusercontent.com/75332377/172052519-77c39d78-33ac-449f-8787-8d8c10d5408d.png)
 
