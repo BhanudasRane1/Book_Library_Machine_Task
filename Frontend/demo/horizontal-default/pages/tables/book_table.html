@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>BOOK CRUD</title>
+  <link rel="stylesheet" href="../../../../vendors/iconfonts/mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="../../../../css/horizontal-layout/style.css">
+  <link rel="shortcut icon" href="../../../../images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="horizontal-menu">
+      <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+        <div class="nav-top flex-grow-1">
+          <div class="container d-flex flex-row h-100 align-items-center">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+              <a class="navbar-brand brand-logo" href="../../index.html">  Books CRUD </a>
+              <a class="navbar-brand brand-logo-mini" href="../../index.html"> Books CRUD </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end flex-grow-1">
+              <ul class="navbar-nav navbar-nav-right">
+               
+              </ul>
+              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+                <span class="mdi mdi-menu"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+    </div>
+
+    <div class="container-fluid page-body-wrapper">
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row justify-content-center ">
+            <div class="col-lg-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Book Table</h4>
+                 
+                  <div class="table-responsive">
+                    <table class="table" id="booktable" >
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>Author</th>
+                          <th>Publisher</th>
+                          <th>Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../../vendors/js/vendor.bundle.addons.js"></script>
+  <script src="../../../../js/off-canvas.js"></script>
+  <script src="../../../../js/hoverable-collapse.js"></script>
+  <script src="../../../../js/template.js"></script>
+  <script src="../../../../js/settings.js"></script>
+  <script src="../../../../js/todolist.js"></script>
+
+
+  
+  <script> 
+  
+
+    console.log("Hello shubham");
+    url_var = 'http://192.168.43.87:8080/books/'
+      
+    $.ajax({
+                url :  url_var,
+                method : "GET",
+                // data :  { csrfmiddlewaretoken:csr },           
+                dataType : "json",
+                success:function(data){
+                    console.log(data);
+
+                    // $('#booktable').append('<tr><td>Jacob</td><td>53275531</td><td>12 May 2017</td><td><label class="badge badge-danger">Pending</label></td></tr>');
+                    
+                    // let option;
+                    for (let i = 0; i < data.length; i++) {
+
+                    $('#booktable').append('<tr><td>' + data[i].title + ' </td><td>'+ data[i].author +'</td><td> ' + data[i].publisher +' </td><td><label class="badge badge-primary">₹'+  data[i].price + '</label></td></tr>');
+
+                      console.log(data[i].title);
+                      console.log(data[i].author);
+                      console.log(data[i].publisher);
+                      console.log(data[i].price);
+                    }
+                },
+            });
+
+  </script>
+  
+</body>
+
+
+</html>

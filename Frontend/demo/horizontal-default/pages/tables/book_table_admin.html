@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>BOOK CRUD Admin </title>
+  <link rel="stylesheet" href="../../../../vendors/iconfonts/mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="../../../../css/horizontal-layout/style.css">
+  <link rel="shortcut icon" href="../../../../images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="horizontal-menu">
+      <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+        <div class="nav-top flex-grow-1">
+          <div class="container d-flex flex-row h-100 align-items-center">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+              <a class="navbar-brand brand-logo" href="../../index.html">  Books CRUD </a>
+              <a class="navbar-brand brand-logo-mini" href="../../index.html"> Books CRUD </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end flex-grow-1">
+              <ul class="navbar-nav navbar-nav-right">
+               
+              </ul>
+              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+                <span class="mdi mdi-menu"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+    </div>
+
+    <div class="container-fluid page-body-wrapper">
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row justify-content-center ">
+            <div class="col-lg-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Book Table</h4>
+                  <button type="button" onclick="logout_user()" class="btn btn-primary mr-2"> Logout</button>
+                  
+                  <!-- Modal starts -->
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal-2"> + Add Book  </button>
+                  </div>
+                  
+                  <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel-2">Add Book </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="forms-sample">
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Title</label>
+                              <input type="text" class="form-control" name="title" id="id_title" placeholder="Title">
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Author</label>
+                              <input type="text" class="form-control" name="author" id="id_author" placeholder="Author">
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Publisher</label>
+                              <input type="text" class="form-control" name="publisher" id="id_publisher" placeholder="Publisher">
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Price</label>
+                              <input type="number" min="0" class="form-control" name="price" id="id_price" placeholder="Price">
+                            </div>
+                                                     
+                            <button type="submit" onclick="add_book()" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                          </form>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal Ends -->
+
+
+                  <div class="modal fade" id="exampleModal-edit" tabindex="-1" role="dialog" aria-labelledby="editmodal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel-2">Edit Book </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <input type="hidden" class="form-control" name="id" id="edit_id_id" >
+
+
+                          <form class="forms-sample">
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Title</label>
+                              <input type="text" class="form-control" name="title" id="edit_id_title" placeholder="Title">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Author</label>
+                              <input type="text" class="form-control" name="author" id="edit_id_author" placeholder="Author">
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Publisher</label>
+                              <input type="text" class="form-control" name="publisher" id="edit_id_publisher" placeholder="Publisher">
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="exampleInputUsername1">Price</label>
+                              <input type="number" min="0" class="form-control" name="price" id="edit_id_price" placeholder="Price">
+                            </div>
+                                                     
+                            <button type="button" onclick="edit_book()" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="table-responsive">
+                    <table class="table" id="booktable" >
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>Author</th>
+                          <th>Publisher</th>
+                          <th>Price</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                                                
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../../vendors/js/vendor.bundle.addons.js"></script>
+  <script src="../../../../js/off-canvas.js"></script>
+  <script src="../../../../js/hoverable-collapse.js"></script>
+  <script src="../../../../js/template.js"></script>
+  <script src="../../../../js/settings.js"></script>
+  <script src="../../../../js/todolist.js"></script>
+
+
+  
+  <script> 
+  
+  tok = localStorage.getItem('access_token');
+  console.log(tok);
+
+  function edit_book_set_attrs(id , title,author,publisher,price){
+    
+    console.log(title);
+
+    $('#edit_id_id').val(id); 
+    $('#edit_id_title').val(title); 
+    $('#edit_id_author').val(author); 
+    $('#edit_id_publisher').val(publisher); 
+    $('#edit_id_price').val(price); 
+    
+   }
+
+    
+  function edit_book(){
+     console.log("Edit ");     
+     url_var = 'http://192.168.43.87:8080/books_detail/' + $('#edit_id_id').val() +'/' ;
+    
+
+    id =     $('#edit_id_id').val(); 
+    title =     $('#edit_id_title').val(); 
+    author =     $('#edit_id_author').val(); 
+    publisher =     $('#edit_id_publisher').val(); 
+    price =     $('#edit_id_price').val(); 
+    console.log(url_var);
+
+    $.ajax({
+                url :  url_var,
+                method : "PUT",
+                headers: {
+                    "Authorization":"Token "+ tok 
+                },  
+                data :  { id:id, title:title ,  author:author, publisher:publisher, price:price  },           
+                dataType : "json",
+                error: function (request, error) {
+                  
+                    alert(" Can't Edit : Unauthorized Access  " + error);
+                    window.location.reload();
+                },
+                success: function () {
+                  alert("Edited Successfully.......... " );
+                  window.location.reload();
+                }
+            });
+
+   }
+
+  function add_book(){
+     console.log("Add ");     
+    url_var = 'http://192.168.43.87:8080/book_post/' ;
+    
+    // console.log();
+    title =     $('#id_title').val(); 
+    author =     $('#id_author').val(); 
+    publisher =     $('#id_publisher').val(); 
+    price =     $('#id_price').val(); 
+     
+    $.ajax({
+                url :  url_var,
+                method : "POST",
+                headers: {
+                    "Authorization":"Token "+ tok 
+                },  
+                data :  { title:title ,  author:author, publisher:publisher, price:price  },           
+                dataType : "json",
+                error: function (request, error) {
+                  
+                  alert(" Can't Edit : Unauthorized Access  " + error);
+                  window.location.reload();
+              },
+              success: function () {
+                alert("Added Successfully.......... " );
+                window.location.reload();
+              }
+                  
+
+            });
+            event.preventDefault();
+   }
+
+   function delete_book(id){
+     console.log("Delete " + id);
+
+     
+    url_var = 'http://192.168.43.87:8080/books_detail/' + id +'/' ;
+    
+    console.log(url_var);
+    
+     
+    $.ajax({
+                url :  url_var,
+                method : "DELETE",
+                // data :  { csrfmiddlewaretoken:csr }, 
+                headers: {
+                    "Authorization":"Token "+ tok  
+                },          
+                dataType : "json",
+                success:function(data){
+                    console.log(data);
+                    alert("Deleted Successfully.......... " );
+                    window.location.reload();
+                    // let option;
+                    
+                },
+                error: function() {  
+                    alert("UnAuthorized Access  " ); 
+                    window.location.reload();
+                }       
+            });
+
+   }
+
+    console.log("Hello shubham");
+    url_var = 'http://192.168.43.87:8080/books/' ;
+    
+    console.log(localStorage.getItem('access_token') );
+
+    $.ajax({
+                url :  url_var,
+                method : "GET",
+                // data :  { csrfmiddlewaretoken:csr },           
+                dataType : "json",
+                success:function(data){
+                  if(localStorage.getItem('access_token') == null){
+                      
+                    $(location).prop('href', 'http://192.168.43.87:5500/demo/horizontal-default/pages/tables/login.html')
+
+                    }
+                    else{
+                      console.log(data);
+                      // let option;
+                      for (let i = 0; i < data.length; i++) {
+                      x = "'"+data[i].id+"',"+"'"+data[i].title+"',"+"'"+data[i].author+"',"+"'"+data[i].publisher+"',"+"'"+data[i].price+"'";
+                      $('#booktable').append('<tr><td>' + data[i].title + ' </td><td>'+ data[i].author +'</td><td> ' + data[i].publisher +' </td><td><label class="badge badge-primary">₹'+  data[i].price + '</label></td> <td>  <button onclick="edit_book_set_attrs('+ x +')" type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal-edit">  Edit  </button> </td> <td>  <button onclick="delete_book('+ data[i].id +')" class="btn btn-outline-dark btn-sm "> Delete </button>  </td> </tr>');
+                      // $('#booktable').append("<tr><td>" + data[i].title + " </td><td>"+ data[i].author +"</td><td> " + data[i].publisher +" </td><td><label class='badge badge-primary'>₹"+  data[i].price + "</label></td> <td>  <button onclick='edit_book_set_attrs( '"+  data[i].price + "' )' type='button' class='btn btn-dark btn-sm' data-toggle='modal' data-target='#exampleModal-edit'>  Edit  </button> </td> <td>  <button onclick='delete_book("+ data[i].id +")' class='btn btn-outline-dark btn-sm '> Delete </button>  </td> </tr>");
+                      }
+                    }
+                },
+            });
+
+  </script>
+  <script>
+
+    
+      
+   function logout_user(){
+      if(localStorage.getItem('access_token') == null){
+        alert("Already Logout .......... " );
+
+      }
+      else{
+        console.log("Logout ");     
+     url_var = 'http://192.168.43.87:8080/auth/logout/' ;
+    
+
+    $.ajax({
+                url :  url_var,
+                method : "GET",
+                // data :  { email:email, password:password },           
+                dataType : "json",
+                
+                error: function (request, error) {
+                  
+                    alert(" Can't Edit : " + error);
+                },
+                success:function(data){
+                    
+                    console.log(localStorage.getItem('access_token') );
+                    
+                    localStorage.removeItem('access_token', data.key );
+                    console.log(localStorage.getItem('access_token') );
+                    // alert("Logout Successfully.......... " );
+                    $(location).prop('href', 'http://192.168.43.87:5500/demo/horizontal-default/pages/tables/login.html')
+                    // window.location.reload();
+                    // console.log(window.sessionStorage.getItem('access_token'));
+                    
+                    // localStorage.setItem('access_token', data.key );
+                    // console.log(localStorage.getItem('access_token') );
+                },
+                
+            });
+            event.preventDefault();
+
+      }
+
+   }
+
+
+
+  </script>
+  
+</body>
+
+</html>

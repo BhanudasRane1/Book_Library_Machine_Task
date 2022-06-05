@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>BOOK CRUD Admin </title>
+  <link rel="stylesheet" href="../../../../vendors/iconfonts/mdi/font/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../../../vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="../../../../css/horizontal-layout/style.css">
+  <link rel="shortcut icon" href="../../../../images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="horizontal-menu">
+      <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+        <div class="nav-top flex-grow-1">
+          <div class="container d-flex flex-row h-100 align-items-center">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+              <a class="navbar-brand brand-logo" href="../../index.html">  Books CRUD </a>
+              <a class="navbar-brand brand-logo-mini" href="../../index.html"> Books CRUD </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end flex-grow-1">
+              <ul class="navbar-nav navbar-nav-right">
+               
+              </ul>
+              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+                <span class="mdi mdi-menu"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+    </div>
+
+    <div class="container-fluid page-body-wrapper">
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row justify-content-center ">
+            <div class="col-lg-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">LOGIN </h4>
+                  <button class="btn btn-primary " onclick="console.log(window.sessionStorage.getItem('access_token'));" > check </button>
+                  <button type="button" onclick="logout_user()" class="btn btn-primary mr-2"> Logout</button>
+                  <a href="http://192.168.43.87:5500/demo/horizontal-default/pages/tables/signup.html" > Signup </a>
+                  <br><br>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Email</label>
+                      <input type="email" class="form-control" name="email" id="id_email" placeholder="Email">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Password</label>
+                      <input type="password" class="form-control" name="password" id="id_password" >
+                    </div>
+                    
+                                             
+                    <button type="submit" onclick="login_user()" class="btn btn-primary mr-2">Submit</button>
+                    
+                  </form>
+               
+                                   
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../../../vendors/js/vendor.bundle.addons.js"></script>
+  <script src="../../../../js/off-canvas.js"></script>
+  <script src="../../../../js/hoverable-collapse.js"></script>
+  <script src="../../../../js/template.js"></script>
+  <script src="../../../../js/settings.js"></script>
+  <script src="../../../../js/todolist.js"></script>
+  
+  <script> 
+  
+  function edit_book_set_attrs(id , title,author,publisher,price){
+    
+    console.log(title);
+
+    $('#edit_id_id').val(id); 
+    $('#edit_id_title').val(title); 
+    $('#edit_id_author').val(author); 
+    $('#edit_id_publisher').val(publisher); 
+    $('#edit_id_price').val(price); 
+    
+   }
+
+    
+  function login_user(){
+     console.log("Login ");     
+     url_var = 'http://192.168.43.87:8080/auth/login/' ;
+    
+
+    email =     $('#id_email').val(); 
+    password =     $('#id_password').val(); 
+    
+    console.log(email);
+    console.log(password);
+    
+    $.ajax({
+                url :  url_var,
+                method : "POST",
+                data :  { email:email, password:password },           
+                dataType : "json",
+                
+                error: function (request, error) {
+                  
+                    alert(" Can't Edit : " + error);
+                },
+                success:function(data){
+                    console.log(data);
+                    console.log(data.key);
+                    // window.sessionStorage.setItem('access_token', data.key);
+                    $(location).prop('href', 'http://192.168.43.87:5500/demo/horizontal-default/pages/tables/book_table_admin.html')
+
+                    alert("Login Successfully.......... " );
+                    // window.location.reload();
+                    // console.log(window.sessionStorage.getItem('access_token'));
+                    
+                    localStorage.setItem('access_token', data.key );
+                    console.log(localStorage.getItem('access_token') );
+                    // localStorage.removeItem('getSessionStorage', data.key );
+                    // console.log(localStorage.getItem('getSessionStorage') );
+
+
+                    
+                },
+                
+            });
+            event.preventDefault();
+
+   }
+
+
+      
+   function logout_user(){
+     console.log("Logout ");     
+     url_var = 'http://192.168.43.87:8080/auth/logout/' ;
+    
+
+    $.ajax({
+                url :  url_var,
+                method : "GET",
+                // data :  { email:email, password:password },           
+                dataType : "json",
+                
+                error: function (request, error) {
+                  
+                    alert(" Can't Edit : " + error);
+                },
+                success:function(data){
+                    
+                    console.log(localStorage.getItem('access_token') );
+                    
+                    localStorage.removeItem('access_token', data.key );
+                    console.log(localStorage.getItem('access_token') );
+                    alert("Logout Successfully.......... " );
+                    window.location.reload();
+                    // console.log(window.sessionStorage.getItem('access_token'));
+                    
+                    // localStorage.setItem('access_token', data.key );
+                    // console.log(localStorage.getItem('access_token') );
+                },
+                
+            });
+            event.preventDefault();
+
+   }
+
+
+
+  </script>
+  
+</body>
+
+</html>
